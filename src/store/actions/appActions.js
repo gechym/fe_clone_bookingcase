@@ -8,3 +8,16 @@ export const setContentOfConfirmModal = (contentOfConfirmModal) => ({
     type: actionTypes.SET_CONTENT_OF_CONFIRM_MODAL,
     contentOfConfirmModal: contentOfConfirmModal
 });
+
+
+export const changeLanguageApp = (language) => ({
+    type : actionTypes.CHANGE_LANGUAGE,
+    language : language,
+    // test : "123"
+})
+
+
+export const test = () => ({
+    type : actionTypes.TEST_REDUX,
+    test : "HELLO REDUX "
+})

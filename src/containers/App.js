@@ -11,12 +11,17 @@ import { userIsAuthenticated, userIsNotAuthenticated } from '../hoc/authenticati
 import { path } from '../utils'
 
 import Home from '../routes/Home';
-import Login from '../routes/Login';
+// import Login from '../routes/Login';
+import Login  from './Auth/Login';
 import Header from './Header/Header';
 import System from '../routes/System';
 
+// impot componet Home page
+import HomePage from './HomePage/HomePage'
+import CustomScrollbars from '../../src/components/CustomScrollbars.js'
+
+
 import { CustomToastCloseButton } from '../components/CustomToast';
-import ConfirmModal from '../components/ConfirmModal';
 
 class App extends Component {
 
@@ -43,16 +48,17 @@ class App extends Component {
             <Fragment>
                 <Router history={history}>
                     <div className="main-container">
-                        <ConfirmModal />
                         {this.props.isLoggedIn && <Header />}
-
-                        <span className="content-container">
-                            <Switch>
-                                <Route path={path.HOME} exact component={(Home)} />
-                                <Route path={path.LOGIN} component={userIsNotAuthenticated(Login)} />
-                                <Route path={path.SYSTEM} component={userIsAuthenticated(System)} />
-                            </Switch>
-                        </span>
+                            <CustomScrollbars style={{width: "100%",height: "100vh"}}>
+                                <div className="content-container">
+                                    <Switch>
+                                        <Route path={path.HOME} exact component={(Home)} /> // "/"
+                                        <Route path={path.LOGIN} component={userIsNotAuthenticated(Login)} />
+                                        <Route path={path.SYSTEM} component={userIsAuthenticated(System)} />
+                                        <Route pasth={path.HOMEPAGE} component={HomePage}/> // "/home"
+                                    </Switch>
+                                </div>
+                            </CustomScrollbars>
 
                         <ToastContainer
                             className="toast-container" toastClassName="toast-item" bodyClassName="toast-item-body"
@@ -70,7 +76,7 @@ class App extends Component {
 const mapStateToProps = state => {
     return {
         started: state.app.started,
-        isLoggedIn: state.admin.isLoggedIn
+        isLoggedIn: state.user.isLoggedIn
     };
 };
 

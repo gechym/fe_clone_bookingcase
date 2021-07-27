@@ -1,0 +1,57 @@
+#customers td, #customers th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#customers{
+   width: 100%;
+}
+
+
+#customers tr:nth-child(even){background-color: #f2f2f2;}
+  
+#customers tr:hover {background-color: #ddd;}
+  
+#customers th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #0071BA;
+    color: white;
+}
+
+
+.modal-user-container{
+    .modal-content{
+        .modal-header{
+            button{
+                background: transparent;
+                border: none;
+                font-size: 30px;
+                color: white;
+            }
+        }
+    }
+
+    .modal-user-body{
+        display: flex;
+        justify-content: space-evenly;
+        .input-container{
+            display: flex;
+            flex-direction: column;
+            width: 45%;
+
+            &.max-w{
+                width: 93%;
+            }
+
+            input{
+                border: 1px solid gray;
+                border-radius: 3px;
+                height: 30px;
+                outline: none;
+                padding: 0 10px;
+            }
+        }
+    }
+}

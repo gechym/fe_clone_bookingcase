@@ -1,4 +1,28 @@
 {
+
+    "homeheader":{
+        "speaciality":"Medical Speciality",
+        "searchdoctor":"Find a doctor by speciality",
+        "health-facility" : "Medical facilitise",
+        "select-room":"Choose hospital clinic ",
+        "doctor":"Doctor",
+        "select-doctor":"Select a good doctor",
+        "fee":"Check package",
+        "check-health":"Check health general",
+        "support":"support"
+    },
+
+    "banner":{
+        "title1":"Medical background",
+        "title2":"Comprehensive health care",
+        "speciality-examination" :"Specialy examination",
+        "remote-examination" : "Remote examination",
+        "general-examination" :"General examination",
+        "medical-test" : "Test medical",
+        "pure-health" : "Pure health",
+        "dental-examination" : "dentistry examination"
+    },
+
     "common": {
         "add": "Add",
         "edit": "Edit",
