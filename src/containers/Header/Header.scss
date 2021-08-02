@@ -8,6 +8,7 @@
     color: $common-text-color;
     height: 40px;
     position: relative;
+
     .btn-logout {
         color: $common-text-color;
         line-height: 40px;
@@ -18,6 +19,49 @@
         }
         i {
             font-size: $base-size + 1px;
+        }
+    }
+
+    .language{
+        color: #D1C9CA;
+        .user{
+            color: white;
+            margin: 0px 10px;
+            font-size: 16px;
+            opacity: 1;
+            font-weight: 700;
+        }
+
+        .language-vi{
+            padding: 0 5px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            border-right: 0.5px solid #FFF;
+
+            &:hover{
+                color: #FFC10E;
+            }
+
+            &.active{
+                font-weight: 900;
+                color: #FFC10E;
+            }
+        }
+        .language-en{
+            padding: 0 5px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            border-left: 0.5px solid #FFF;
+            &:hover{
+                color: #49BCE2;
+            }
+
+            &.active{
+                font-weight: 900;
+                color: #49BCE2;
+            }
         }
     }
 }

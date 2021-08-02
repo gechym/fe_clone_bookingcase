@@ -25,15 +25,9 @@ class UserManage extends Component {
             userEdit : {},
             isLoading : true
         }
-
-        this.listenToEmiiter1()
     }
 
-    listenToEmiiter1(){
-        emitter.on('EVENT_CLEAR_MODAL_DATA1',() => {
-            alert('test')
-        })
-    }
+    
 
 
 
@@ -61,7 +55,7 @@ class UserManage extends Component {
         setTimeout( async () =>{
             await this.loadingNewUser();
             this.setState({isLoading : !this.state.isLoading})
-        },3000)
+        },1000)
 
     }
 
@@ -105,6 +99,7 @@ class UserManage extends Component {
     deleteUser = async (id) => {
         try {
             let response = await userService.deleteUserService(id)
+            console.log(response)
             this.loadingNewUser()
         } catch (error) {
             console.log(error)            

@@ -5,11 +5,13 @@ import { FormattedMessage } from 'react-intl';
 
 import {LANGUAGES} from '../../utils/constant'
 import {changeLanguageApp,test} from '../../store/actions/appActions'
+import * as actions from '../../store/actions'
 
 class HomeHeader extends Component {
 
     changeLanguage = (language) => {
         this.props.changeLanguageAppRedux(language)
+        // this.props.dispatch(actions.changeLanguageApp(language))
     }
 
     render() {

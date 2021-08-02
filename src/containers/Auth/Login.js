@@ -5,30 +5,36 @@ import * as actions from "../../store/actions"; // '../store/actions'
 import './Login.scss';
 import  userService  from '../../services/userService';
 
+import { Spinner } from 'reactstrap';
+
 
 class Login extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            username : 'admin',
-            password : '123',
             isShowPassword : false,
-            errMessage : ''
+            errMessage : '',
+            isLoading : false
         }
     }
 
     handleLogin = async (email,password) => {
-        this.setState({errMessage : ''})
+        this.setState({errMessage : '',isLoading:true})
         try {
             let data = await userService.handleLoginApi(email,password);
             console.log(data)
             var {errCode, errMessage, user} = data
             if(errCode !== 0 && data){
+                this.setState({isLoading:false})
                 this.setState({errMessage})
             }
             if(errCode === 0 && data){
-                this.props.userLoginSuccess(user)
-                console.log(user)
+
+                setTimeout(() => {
+                    this.setState({isLoading:false})
+                    this.props.userLoginSuccess(user)
+                    console.log(user)
+                },3000)
             }
             // console.log(data.data)
             // let {errCode, errMessage, user} = data.data
@@ -40,6 +46,7 @@ class Login extends Component {
         } catch (err) {
             if(err.response){
                 if(err.response.data){
+                    this.setState({isLoading:false})
                     this.setState({errMessage:err.response.data.message})
                 }
             }
@@ -89,7 +96,20 @@ class Login extends Component {
                              </div>
                         </div>
                         <div className="col-12" style={{height:"40px",textAlign:"center",color:"red"}}>
-                            {this.state.errMessage}
+                            
+                            {
+                                this.state.errMessage 
+                                    ? 
+                                    this.state.errMessage 
+                                    :
+                                        this.state.isLoading 
+                                            ? 
+                                            <Spinner type="grow" color="info" />
+                                            :
+                                            ''
+                                      
+                            }
+                            
                         </div>
                         <div className="col-12">
                             <input 
