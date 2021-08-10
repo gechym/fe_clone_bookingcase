@@ -17,7 +17,7 @@ class HomePage extends Component {
     }
 
     settings = {
-        infinite: true,
+        infinite: false,
         speed: 500,
         slidesToShow: 4,
         slidesToScroll: 1,
@@ -31,7 +31,7 @@ class HomePage extends Component {
     render() {
         return (
             <>
-                <HomeHeader/>
+                <HomeHeader isShow = {true}/>
                 <Speciality settings={this.settings}/>
                 <MedicalFacility settings= {this.settings}/>
                 <OutStandingDoctor settings= {this.settings}/>

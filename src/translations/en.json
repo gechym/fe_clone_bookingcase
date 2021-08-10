@@ -14,7 +14,7 @@
     },
 
     "banner":{
-        "title1":"Medical background",
+        "title1":"Medical platform",
         "title2":"Comprehensive health care",
         "speciality-examination" :"Specialy examination",
         "remote-examination" : "Remote examination",
@@ -48,6 +48,10 @@
             "manage-specialitis" :"Manage specialties",
             "handbook" : "Handbook",
             "manage-handbook" : "Manage andbook"
+        },
+        "doctor" : {
+            "manage-schedule" : "Manage schedule",
+            "schedule" : "Schedule"
         }
     },
     "manage-user" : {
@@ -61,7 +65,22 @@
         "gender" : "Gender",
         "position" : "position",
         "roleID" : "role",
-        "save" : "save",
-        "image" : "Image"
+        "save" : "Save",
+        "edit" : "Update user",
+        "image" : "image",
+        "upload" : "upload image",
+        "remove" : "remove"
+    },
+
+    "homepage":{
+        "out-standing-doctor":"Last week's featured doctor",
+        "more-info":"more info"
+    },
+    "manage-schedule" : {
+        "title" : "Manage schedule doctor examination plat",
+        "choose" : "Choose doctor",
+        "choose-date" : "Create a medical day",
+        "save" : "save"
+
     }
 }

@@ -12,9 +12,18 @@ class Login extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            username:'',
+            password:'',
             isShowPassword : false,
             errMessage : '',
             isLoading : false
+        }
+    }
+
+    handleKeyDown = (e) => {
+        console.log(e.keyCode)
+        if(e.key === 'Enter'){
+            this.handleLogin(this.state.username, this.state.password)
         }
     }
 
@@ -29,12 +38,9 @@ class Login extends Component {
                 this.setState({errMessage})
             }
             if(errCode === 0 && data){
-
-                setTimeout(() => {
-                    this.setState({isLoading:false})
-                    this.props.userLoginSuccess(user)
-                    console.log(user)
-                },3000)
+                this.setState({isLoading:false})
+                this.props.userLoginSuccess(user)
+                console.log(user)
             }
             // console.log(data.data)
             // let {errCode, errMessage, user} = data.data
@@ -72,7 +78,6 @@ class Login extends Component {
                                 className="input form-control" 
                                 value={this.state.username}
                                 onChange={e => this.setState({username:e.target.value,errMessage:''})}
-                                name="email"
                             />
                         </div>
                         <div className="col-12 form-group form-input-password">
@@ -84,7 +89,9 @@ class Login extends Component {
                                     className="input form-control"
                                     value={this.state.password}
                                     onChange={e => this.setState({password:e.target.value,errMessage:''})}
-                                    name="password"
+                                    onKeyDown = {(e) => {
+                                        this.handleKeyDown(e)
+                                    }}
                                 />
                               
                                 {

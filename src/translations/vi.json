@@ -49,7 +49,11 @@
             "handbook" : "Cẩm Nang",
             "manage-handbook" : "Quản lý cẩm nang"
 
-        } 
+        },
+        "doctor" : {
+            "manage-schedule" : "Quản lý kế hoạch khám bệnh",
+            "schedule" : "Kế hoạch khám bệnh"
+        }
     },
     
     "manage-user" : {
@@ -64,7 +68,22 @@
         "position" : "Chức danh",
         "roleID" : "Vai trò",
         "save" : "Lưu",
-        "image" : "Hình Ảnh"
+        "edit" : "Cập nhật ",
+        "image" : "Hình Ảnh",
+        "upload" : "Tải file",
+        "remove" : "xóa"
 
+    },
+
+    "homepage":{
+        "out-standing-doctor":"Bác sĩ nỗi bật tuần qua",
+        "more-info": "Xem thêm"
+    },
+
+    "manage-schedule" : {
+        "title" : "Quản lý kế hoạch khám bệnh",
+        "choose" : "Chọn Bác sĩ",
+        "choose-date" : "Tạo ngày khám bệnh",
+        "save" : "Lưu"
     }
 }

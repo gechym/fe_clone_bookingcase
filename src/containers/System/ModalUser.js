@@ -158,8 +158,8 @@ class ModalUser extends Component {
                             
                         </ModalBody>
                         <ModalFooter>
-                        <Button color="primary" className="px-3" onClick={() =>this.hanhdleNewUser() }>save</Button>{' '}
-                        <Button color="secondary" className="px-3" onClick={() => this.toggle()}>close</Button>
+                            <Button color="primary" className="px-3" onClick={() =>this.hanhdleNewUser() }>save</Button>{' '}
+                            <Button color="secondary" className="px-3" onClick={() => this.toggle()}>close</Button>
                         </ModalFooter>
                 </Modal>
             </div>

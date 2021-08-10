@@ -11,6 +11,10 @@ const initialState = {
     gender : [],
    position : [],
    roleId : [],
+   users : [],
+   topDoctors : [],
+   allDoctors : [],
+   allTime : [],
 }
 
 const adminReducer = (state = initialState, action) => {
@@ -39,18 +43,58 @@ const adminReducer = (state = initialState, action) => {
                 position : action.data,
             }
         case actionTypes.FETCH_POSITION_FAILED: 
-        return {
-            ...state,
-        } 
-        case actionTypes.FETCH_ROLEID_SUCCESS: 
+            return {
+                ...state,
+            } 
+        case actionTypes.FETCH_ROLEID_SUCCESS:
             return {
                 ...state,
                 roleId : action.data,
             }
         case actionTypes.FETCH_ROLEID_FAILED: 
-        return {
-            ...state,
-        } 
+            return {
+                ...state,
+            }
+        case actionTypes.FETCH_ALL_USERS_SUCCESS:
+            state.users = action.users
+            return {
+                ...state
+            }
+        case actionTypes.FETCH_ALL_USERS_FAILED: 
+            state.users = []
+            return {
+                ...state,
+            }
+        case actionTypes.FETCH_TOP_DOCTOR_SUCCESS:
+            state.topDoctors = action.dataDoctor
+            return {
+                ...state
+            }
+        case actionTypes.FETCH_TOP_DOCTOR_FAILED: 
+            return {
+                ...state,
+            }
+        case actionTypes.FETCH_ALL_DOCTOR_SUCCESS:
+            state.allDoctors = action.dataDoctor
+            return {
+                ...state
+            }
+        case actionTypes.FETCH_ALL_DOCTOR_FAILED:
+            state.allDoctors = [] 
+            return {
+                ...state,
+            }
+        case actionTypes.FETCH_ALLCODE_SCHEDULE_HOURS_SUCCESS:
+            state.allTime = action.data
+            console.log(action.data)
+            return {
+                ...state
+            }
+        case actionTypes.FETCH_ALL_DOCTOR_FAILED:
+            state.allTime = [] 
+            return {
+                ...state,
+            }  
         default:
             return state;
     }

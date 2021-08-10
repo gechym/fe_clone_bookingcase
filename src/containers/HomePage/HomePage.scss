@@ -41,6 +41,7 @@
             // border: 1px solid red;
             .section-customize{
                 width: 278px !important;
+                cursor: pointer;
 
                 &.boder-customize{
                     border: 3px solid #F5F5F5;
@@ -181,6 +182,10 @@
         transform: translate(0, -50%) !important;
         height: 100% !important;
     }
+}
+
+.slick-disabled{
+    display: none !important;
 }
 
 * {

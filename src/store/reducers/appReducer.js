@@ -37,12 +37,6 @@ const appReducer = (state = initialState, action) => {
                 ...state,
                 language: action.language,
             }
-        case actionTypes.TEST_REDUX: 
-            console.log("check redux :", action)
-            alert(action.test)
-            return {
-                ...state,
-            }
         default:
             return state;
     }

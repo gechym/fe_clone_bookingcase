@@ -4,6 +4,11 @@ import { Redirect, Route, Switch } from 'react-router-dom';
 import UserManage from '../containers/System/UserManage';
 import UserRedux from '../containers/System/Admin/UserRedux';
 import Header from '../containers/Header/Header';
+import manageDoctor from '../containers/System/Admin/manageDoctor';
+// import {path} from "../utils"
+// import DetailDoctor from '../containers/HomePage/Patient/Doctor/DetailDoctor'
+import { withRouter } from 'react-router';
+
 
 class System extends Component {
     render() {
@@ -16,6 +21,8 @@ class System extends Component {
                         <Switch>
                             <Route path="/system/user-manage" component={UserManage} />
                             <Route path="/system/user-redux" component={UserRedux} />
+                            <Route path="/system/manage-doctor" component={manageDoctor} />
+                            {/* <Route pasth={path.DETAIL_DOCTOR} component={(props)=><DetailDoctor {...props} />}/>  */}
                             <Route component={() => { return (<Redirect to={systemMenuPath} />) }} />
                         </Switch>
                     </div>
@@ -38,4 +45,4 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(System);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(System));
