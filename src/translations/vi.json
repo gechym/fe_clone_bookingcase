@@ -85,5 +85,13 @@
         "choose" : "Chọn Bác sĩ",
         "choose-date" : "Tạo ngày khám bệnh",
         "save" : "Lưu"
+    },
+
+    "patient" : {
+        "detail-doctor" : {
+            "schedule" : "Lịch Khám",
+            "no-doctor" : "Ngày này bác sĩ không có lịch, bạn có thể chon các ngày khác nhé"
+        } 
+
     }
 }

@@ -82,5 +82,12 @@
         "choose-date" : "Create a medical day",
         "save" : "save"
 
+    },
+    "patient" : {
+        "detail-doctor" : {
+            "schedule" : "Schedule",
+            "no-doctor" : "This day the doctor does not have a schedule, you can choose another day"
+        } 
+
     }
 }

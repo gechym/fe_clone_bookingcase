@@ -9,6 +9,7 @@ import { withRouter } from 'react-router';
 
 
 import "./DoctorSchedule.scss"
+import { FormattedMessage } from 'react-intl';
 
 class DoctorSchedule extends Component {
     constructor(props){
@@ -19,14 +20,26 @@ class DoctorSchedule extends Component {
         }
     }
 
-    componentDidMount(){
+    async componentDidMount(){
         // console.log('Time vi', moment(new Date()).format('dddd - DD/MM - h:mm:ss '))
         // console.log('time en', moment(new Date()).locale('en').format('dddd - DD/MM - h:mm:ss '))
         
         // // tiến lên 1 ngày 
         // console.log("tiến 1 ngày" ,moment(new Date()).add(1, 'days').valueOf())
         // console.log("tiến 1 ngày" ,moment(new Date()).add(1, 'days').startOf('day').valueOf()) // chuyển qua timestane
-        this.setArrDays()
+        let allDays = this.getAllDays()
+        if(this.props.match && this.props.match.params && this.props.match.params.id){
+             let doctorId = this.props.match.params.id
+             let res = await userService.getScheduleDoctorByDate(doctorId,allDays[0].value)
+             this.setState({
+                allDays : allDays,
+                allAvailabelTime : res.data
+            })
+        } 
+        this.setState({
+            allDays : this.getAllDays()
+        })
+
 
     }
 
@@ -34,30 +47,40 @@ class DoctorSchedule extends Component {
         return string.charAt(0).toUpperCase() + string.slice(1);
     }
 
-    setArrDays = () => {
+    getAllDays = () => {
         let arrDate = []
-        // setTimeout(()=>{
             for(let i = 0 ; i < 7 ; i++) {
                 let object = {}
                 if(this.props.language === 'vi'){
-                    // this.capitalizeFirstLetter(moment(new Date()).add(i, 'days').format('dddd, DD/MM'))
-                    object.label = this.capitalizeFirstLetter(moment(new Date()).add(i, 'days').format('dddd - DD/MM'))
-                    object.value = moment(new Date()).add(i , 'days').startOf('day').valueOf()
-                    if(!object.label.includes("chủ nhật,")){
-                        arrDate.push(object)
+                    if( i === 0) {
+
+                        object.label ='Hôm nay - ' + moment(new Date()).add(i, 'days').format('DD/MM')
+                        object.value = moment(new Date()).add(i , 'days').startOf('day').valueOf()
+                        
+                        // if(!object.label.includes("chủ nhật,")){// case trường hợp không chọn ngày chủ nhật
+                        //     arrDate.push(object)
+                        // }
+                    }else{
+                        object.label = this.capitalizeFirstLetter(moment(new Date()).add(i, 'days').format('dddd - DD/MM'))
+                        object.value = moment(new Date()).add(i , 'days').startOf('day').valueOf()
                     }
+                    arrDate.push(object)
                 }else{
-                    object.label = moment(new Date()).locale('en').add(i, 'days').format('dddd, DD/MM');
-                    object.value = moment(new Date()).add(i , 'days').startOf('day').valueOf()
-                    if(!object.label.includes("Sunday,")){
-                        arrDate.push(object)
+                    if( i === 0) {
+                        object.label ='Today - ' + moment(new Date()).locale('en').add(i, 'days').format('DD/MM')
+                        object.value = moment(new Date()).add(i , 'days').startOf('day').valueOf()
+                    }else{
+                        object.label = this.capitalizeFirstLetter(moment(new Date()).locale('en').add(i, 'days').format('dddd - DD/MM'))
+                        object.value = moment(new Date()).add(i , 'days').startOf('day').valueOf()
                     }
+                    arrDate.push(object)
+                    // if(!object.label.includes("Sunday,")){ case thường hợp không chọn ngày chủ nhật 
+                    //     arrDate.push(object)
+                    // }
                 }
             }
-            this.setState({
-                allDays : arrDate
-            })
-        // },5000)
+
+            return arrDate
     }
 
     handleOnchangeSelect = async (e) => {
@@ -71,8 +94,6 @@ class DoctorSchedule extends Component {
         if(this.props.doctorIdFromParant && this.props.doctorIdFromParant !== -1){
             let date = e.target.value
             let id = this.props.doctorIdFromParant
-
-            // alert(date + " " + id)
             let res = await userService.getScheduleDoctorByDate(id,date)
             console.log("check :",res)
 
@@ -89,7 +110,9 @@ class DoctorSchedule extends Component {
 
     componentDidUpdate(prevProps, prevState){
         if(prevProps.language !== this.props.language){
-            this.setArrDays()
+            this.setState({
+                allDays : this.getAllDays()
+            })
         }
     }
 
@@ -120,7 +143,7 @@ class DoctorSchedule extends Component {
                 <div className="all-available-time">
                     <div className="text-calendar">
                         <i class="fas fa-calendar-alt"></i>
-                        <span>Lịch Khám</span>
+                        <span><FormattedMessage id="patient.detail-doctor.schedule"/></span>
                     </div>
                     <div className="time-content">
                         {
@@ -129,7 +152,7 @@ class DoctorSchedule extends Component {
                                 let timeDisplay = this.props.language === 'vi' 
                                         ? item.timeTypeData.valueVi : item.timeTypeData.valueEn
                                 return(<button key={index}>{timeDisplay}</button>)
-                            }) : "Ngày Này Bác sĩ chưa có lịch khám, bạn hãy kiểm tra các ngày khác nhé"
+                            }) : <FormattedMessage id="patient.detail-doctor.no-doctor"/>
                         }
                         
                     </div>
