@@ -159,6 +159,7 @@ class Doctor extends Component {
     render() {
         let {rangeTime} = this.state
         let {language} = this.props
+        let yesterday = new Date(new Date().setDate(new Date().getDate()-1));
         return (
             <>
                 <div className="manage-schedule-container">
@@ -182,7 +183,7 @@ class Doctor extends Component {
                                     onChange = {this.handleOnchangeDataPicker}
                                     value = {this.state.currentDate}
                                     className="form-control"
-                                    minDate = {new Date()}
+                                    minDate = {yesterday}
                                 />
                             </div>
                             <div className="col-12 pick-hour-container">

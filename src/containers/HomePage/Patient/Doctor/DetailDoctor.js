@@ -60,7 +60,8 @@ class DetailDoctor extends Component {
                                 }
                             </div>
                             <div className="down">
-                                {detailDoctor &&
+                                {   
+                                    detailDoctor &&
                                     detailDoctor.Markdown &&
                                     detailDoctor.Markdown.description &&
                                     <span>
@@ -76,6 +77,7 @@ class DetailDoctor extends Component {
                             <DoctorSchedule 
                                 doctorIdFromParant={detailDoctor && detailDoctor.id ? detailDoctor.id : -1}
                             />
+
                        </div>
                        <div className=" content-right">
                        </div>
