@@ -36,6 +36,8 @@ class Doctor extends Component {
     handleOnchangeDataPicker = (date) => {
         this.setState({
             currentDate : date[0]
+        }, ()=> {
+            console.log("check Date",this.state.currentDate)
         })
     }
 
@@ -74,15 +76,17 @@ class Doctor extends Component {
 
         // let formatedDate = moment(currentDate).format(dateFormat.SEND_TO_SERVER)
         // let formatedDate = moment(currentDate).unix() // thay đổi định dạng ngày 
+
         let formatedDate = new Date(currentDate).getTime();
 
         if(rangeTime && rangeTime.length > 0){
             let selectedTime = rangeTime.filter((item) => item.isSelected === true)
             if(selectedTime && selectedTime.length > 0) {
-                let object = {}
-                object.doctorId = selectedDoctor.value
-                object.date = formatedDate
-                object.time = 
+                // let object = {}
+                // object.doctorId = selectedDoctor.value
+                // object.date = formatedDate
+                // console.log(object)
+                // object.time = 
                 selectedTime.map((time) => {
                     let object = {}
                     object.doctorId = selectedDoctor.value
@@ -91,6 +95,7 @@ class Doctor extends Component {
                     
                     result.push(object)
                 })
+                
 
             }else{
                 toast.error("Invalid select time schedule!")
@@ -98,11 +103,13 @@ class Doctor extends Component {
             }
         }
 
-        let res = await userService.saveBulkScheduleDoctor({
-            arrSchedule : result,
-            doctorId : selectedDoctor.value,
-            date : formatedDate
-        })
+        let res = await userService.saveBulkScheduleDoctor(
+            {
+                arrSchedule : result,
+                doctorId : selectedDoctor.value,
+                date : formatedDate
+            }
+        )
         if(res && res.errCode === 0) {
             toast.success("Tạo Lịch Khám Thành công")
         }else{

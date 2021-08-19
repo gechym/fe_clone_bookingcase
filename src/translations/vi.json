@@ -91,7 +91,42 @@
         "detail-doctor" : {
             "schedule" : "Lịch Khám",
             "no-doctor" : "Ngày này bác sĩ không có lịch, bạn có thể chon các ngày khác nhé"
-        } 
+        },
+        "extra-infor-doctor" : {
+            "text-address" : "ĐỊA CHỈ PHÒNG KHÁM",
+            "price":"Giá khám",
+            "detail" : "Xem chi tiết",
+            "payment" :"Phương thức thanh toán",
+            "hide-price" : "Ẩn giá"
+        },
+        "booking-modal": {
+            "title" : "Thông tin đặt lịch khám",
+            "fullName" : "Họ Tên",
+            "phone" : "SĐT",
+            "email" : "Địa chỉ email",
+            "address" :"Địa chỉ liên hệ",
+            "reason" : "lý do khám",
+            "birthday" : "Ngày sinh",
+            "gender" :"Giới tính",
+            "confirm" : "Xác nhận",
+            "cancel" : "Thoát",
+            "book-free" : "Đặt lịch miễn phí"
+        }
 
+    },
+    "admin" : {
+        "manage-doctor" : {
+            "title" : "TẠO THÊM THÔNG TIN DOCTOR",
+            "choose" : "Chọn Bác sĩ",
+            "description-doctor" : "Mô tả về bác sĩ",
+            "save" : "Lưu Thông tin bác sĩ",
+            "update" : "Cập nhật lại thông tin bác sĩ",
+            "price" : "Giá khám",
+            "payment" : "Phương thức thanh toán",
+            "province" : "Chọn tỉnh thành / hoặc nơi hiện đang công tác",
+            "nameClinic" : "Tên phòng khám / trạm y tế",
+            "addressClinic" : "Địa chỉ phòng khám",
+            "note" : "Ghi chú"
+        }
     }
 }

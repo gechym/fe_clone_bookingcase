@@ -87,7 +87,43 @@
         "detail-doctor" : {
             "schedule" : "Schedule",
             "no-doctor" : "This day the doctor does not have a schedule, you can choose another day"
-        } 
+        },
+        "extra-infor-doctor" : {
+            "text-address" : "Clinic address",
+            "price":"price of examination",
+            "detail" : "View details",
+            "payment" :"Payment method",
+            "hide-price" : "Hide price"
+        },
+        "booking-modal": {
+            "title" : "Information to book an appointment",
+            "fullName" : "Full Name",
+            "phone" : "Phone number",
+            "email" : "Email address",
+            "address" :"Contact Address",
+            "reason" : "reason for examination",
+            "birthday" : "birthday",
+            "gender" :"Gender",
+            "confirm" : "Confirm",
+            "cancel" : "Cancel",
+            "book-free" : "Booking free"
 
+        }
+
+    },
+    "admin" : {
+        "manage-doctor" : {
+            "title" : "CREATE MORE DOCTOR INFORMATION",
+            "choose" : "Choose doctor",
+            "description-doctor" : "Description doctor",
+            "save" : "SAVE",
+            "update" : "UPDATE",
+            "price" : "Examination price",
+            "payment" : "Method of payment",
+            "province" : "Select the province or place where you are currently working",
+            "nameClinic" : "Clinic name",
+            "addressClinic" : "Clinic address",
+            "note" : "Note"
+        }
     }
 }

@@ -5,17 +5,18 @@ import { ConnectedRouter as Router } from 'connected-react-router';
 import { history } from '../redux'
 import { ToastContainer } from 'react-toastify';
 import { userIsAuthenticated, userIsNotAuthenticated } from '../hoc/authentication';
-import Doctor from '../routes/Doctor';
 import { path } from '../utils'
 
 
 
 
 // import Login from '../routes/Login';
+
 import CustomScrollbars from '../../src/components/CustomScrollbars.js'
 import Home from '../routes/Home';
 import Login  from './Auth/Login';
 import System from '../routes/System';
+import Doctor from '../routes/Doctor';
 import DetailDoctor from '../containers/HomePage/Patient/Doctor/DetailDoctor'
 import HomePage from './HomePage/HomePage'
 
@@ -56,8 +57,6 @@ class App extends Component {
                                                 <Switch>
                                                     <Route path={path.HOME} exact component={(Home)} /> // "/"
                                                     <Route path={path.LOGIN}  component={userIsNotAuthenticated(Login)} />//"/login"
-                                                    <Route path={path.DETAIL_DOCTOR} component={DetailDoctor}/> 
-                                                    Doctor
                                                     <Route path={path.SYSTEM}  component={userIsAuthenticated(System)} />// "/system/.."
                                                     <Route path={'/doctor'}  component={userIsAuthenticated(Doctor)} />// "/system/.."
                                                     <Route path={path.HOMEPAGE} component={HomePage}/> // "/home"

@@ -1,20 +1,23 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
+import { FormattedMessage } from 'react-intl';
+
 import HomeHeader from "../../HomeHeader"
 import HomeFooter from "../../Section/HomeFooter"
 import userService from '../../../../services/userService'
 import DoctorSchedule from './DoctorSchedule';
 
 import "./DetailDoctor.scss"
+import DoctorExtraInfor from './DoctorExtraInfor';
+import BookingModal from '../Modal/BookingModal';
 
 class DetailDoctor extends Component {
     constructor(props){
         super(props)
         this.state = {
-            detailDoctor : {}
+            detailDoctor : {},
         }
     }
-
     async componentDidMount(){
         if(this.props.match && this.props.match.params && this.props.match.params.id){
             let id = this.props.match.params.id
@@ -31,6 +34,8 @@ class DetailDoctor extends Component {
 
     }
 
+    
+
     render() {
         // console.log(this.props.match.params.id)
         // console.log(this.props)
@@ -45,6 +50,7 @@ class DetailDoctor extends Component {
         return (
             <>
                 <HomeHeader isShow = {false}/>
+                 
                 <div className="doctor-detail-container">
                    <div className="intro-doctor">
                         <div 
@@ -80,6 +86,7 @@ class DetailDoctor extends Component {
 
                        </div>
                        <div className=" content-right">
+                           <DoctorExtraInfor/>
                        </div>
                       
                    </div>
