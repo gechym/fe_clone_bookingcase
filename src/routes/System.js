@@ -5,6 +5,8 @@ import UserManage from '../containers/System/UserManage';
 import UserRedux from '../containers/System/Admin/UserRedux';
 import Header from '../containers/Header/Header';
 import manageDoctor from '../containers/System/Admin/manageDoctor';
+import ManageSpecialty from '../containers/System/Speciality/ManageSpecialty';
+import ManageClinic from '../containers/System/clinic/ManageClinic';
 // import {path} from "../utils"
 // import DetailDoctor from '../containers/HomePage/Patient/Doctor/DetailDoctor'
 import { withRouter } from 'react-router';
@@ -19,10 +21,11 @@ class System extends Component {
                 <div className="system-container">
                     <div className="system-list">
                         <Switch>
-                            <Route path="/system/user-manage" component={UserManage} />
                             <Route path="/system/user-redux" component={UserRedux} />
+                            <Route path="/system/user-manage" component={UserManage} />
                             <Route path="/system/manage-doctor" component={manageDoctor} />
-                            {/* <Route pasth={path.DETAIL_DOCTOR} component={(props)=><DetailDoctor {...props} />}/>  */}
+                            <Route path="/system/manage-specialitis" component={ManageSpecialty} />
+                            <Route path="/system/manage-clinic" component={ManageClinic} />
                             <Route component={() => { return (<Redirect to={systemMenuPath} />) }} />
                         </Switch>
                     </div>

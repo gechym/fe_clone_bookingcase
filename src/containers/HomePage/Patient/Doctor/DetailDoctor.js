@@ -9,7 +9,6 @@ import DoctorSchedule from './DoctorSchedule';
 
 import "./DetailDoctor.scss"
 import DoctorExtraInfor from './DoctorExtraInfor';
-import BookingModal from '../Modal/BookingModal';
 
 class DetailDoctor extends Component {
     constructor(props){
@@ -28,10 +27,6 @@ class DetailDoctor extends Component {
                 })
             }
         }
-    }
-
-    componentDidUpdate(){
-
     }
 
     
@@ -86,7 +81,7 @@ class DetailDoctor extends Component {
 
                        </div>
                        <div className=" content-right">
-                           <DoctorExtraInfor/>
+                           <DoctorExtraInfor doctorIdFromParant={detailDoctor && detailDoctor.id ? detailDoctor.id : -1}/>
                        </div>
                       
                    </div>

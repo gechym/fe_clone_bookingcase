@@ -13,46 +13,49 @@ class DoctorExtraInfor extends Component {
     constructor(props){
         super(props)
         this.state = {
-            isShowDetailInfor : true,
+            isShowDetailInfor : false,
             extraInfor :''
         }
     }
 
+    // async componentDidMount(){
+    //     if(this.props.match && this.props.match.params && this.props.match.params.id){
+    //         let doctorId = this.props.match.params.id
+    //         let res = await userService.getExtraInforDoctorById(doctorId)
+    //         if(res && res.errCode === 0){
+    //             this.setState({
+    //                 extraInfor : res.data                    
+    //             })
+    //         }
+    //    } 
+    // }
+
     async componentDidMount(){
-        if(this.props.match && this.props.match.params && this.props.match.params.id){
-            let doctorId = this.props.match.params.id
+        // if(this.props.match && this.props.match.params && this.props.match.params.id){
+        if(this.props.doctorIdFromParant){
+            //  let doctorId = this.props.match.params.id
+            let doctorId = this.props.doctorIdFromParant
             let res = await userService.getExtraInforDoctorById(doctorId)
-            
-        // "data": {
-        //     "id": 2,
-        //     "doctorId": 58,
-        //     "priceId": "PRI1",
-        //     "provinceId": "PRO3",
-        //     "paymentId": "PAY3",
-        //     "addressClinic": "Đà nẳng 1",
-        //     "nameClinic": "Phòng Khám Hai Ba Trưng 566 ",
-        //     "note": "Khám oke nha",
-        //     "count": 0,
-        //     "createdAt": "2021-08-12T13:28:42.000Z",
-        //     "updatedAt": "2021-08-12T13:28:42.000Z",
-        //     "priceTypeData": {
-        //         "valueEn": "10",
-        //         "valueVi": "200000"
-        //     },
-        //     "provinceTypeData": {
-        //         "valueEn": "Da Nang",
-        //         "valueVi": "Đà Nẵng"
-        //     },
-        //     "paymentTypeData": {
-        //         "valueEn": "All payment method",
-        //         "valueVi": "Tất cả"
-        //     }
             if(res && res.errCode === 0){
                 this.setState({
                     extraInfor : res.data                    
                 })
             }
-       } 
+             
+        }
+    }
+    
+
+    async componentDidUpdate(prevProps, prevState){
+        if(this.props.doctorIdFromParant !== prevProps.doctorIdFromParant){
+            let doctorId = this.props.doctorIdFromParant
+            let res = await userService.getExtraInforDoctorById(doctorId)
+            if(res && res.errCode === 0){
+                this.setState({
+                    extraInfor : res.data                    
+                })
+            }
+        }
     }
 
     render() {

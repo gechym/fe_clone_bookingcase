@@ -52,7 +52,8 @@
         },
         "doctor" : {
             "manage-schedule" : "Quản lý kế hoạch khám bệnh",
-            "schedule" : "Kế hoạch khám bệnh"
+            "schedule" : "Kế hoạch khám bệnh",
+            "manage-patient" : "Quản lý lịch hẹn"
         }
     },
     
@@ -77,6 +78,7 @@
 
     "homepage":{
         "out-standing-doctor":"Bác sĩ nỗi bật tuần qua",
+        "specialty" : "Chuyên khoa phổ biến",
         "more-info": "Xem thêm"
     },
 
@@ -126,7 +128,9 @@
             "province" : "Chọn tỉnh thành / hoặc nơi hiện đang công tác",
             "nameClinic" : "Tên phòng khám / trạm y tế",
             "addressClinic" : "Địa chỉ phòng khám",
-            "note" : "Ghi chú"
+            "note" : "Ghi chú",
+            "specialty" : "chuyên khoa",
+            "clinic" :"Phòng khám"
         }
     }
 }

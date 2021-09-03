@@ -31,19 +31,37 @@ class DoctorSchedule extends Component {
         // console.log("tiến 1 ngày" ,moment(new Date()).add(1, 'days').valueOf())
         // console.log("tiến 1 ngày" ,moment(new Date()).add(1, 'days').startOf('day').valueOf()) // chuyển qua timestane
         let allDays = this.getAllDays()
-        if(this.props.match && this.props.match.params && this.props.match.params.id){
-             let doctorId = this.props.match.params.id
+
+        // if(this.props.match && this.props.match.params && this.props.match.params.id){
+        if(this.props.doctorIdFromParant){
+            //  let doctorId = this.props.match.params.id
+             let doctorId = this.props.doctorIdFromParant
              let res = await userService.getScheduleDoctorByDate(doctorId,allDays[0].value)
              this.setState({
                 allDays : allDays,
                 allAvailabelTime : res.data
             })
-        } 
-        this.setState({
-            allDays : this.getAllDays()
-        })
+        }
 
+    }
 
+    async componentDidUpdate(prevProps, prevState){
+        let allDays = this.getAllDays()
+
+        if(this.props.doctorIdFromParant !== prevProps.doctorIdFromParant){
+            //  let doctorId = this.props.match.params.id
+             let doctorId = this.props.doctorIdFromParant
+             let res = await userService.getScheduleDoctorByDate(doctorId,allDays[0].value)
+             this.setState({
+                allDays : allDays,
+                allAvailabelTime : res.data
+            })
+        }
+        if(prevProps.language !== this.props.language){
+            this.setState({
+                allDays : this.getAllDays()
+            })
+        }
     }
 
     capitalizeFirstLetter = (string) => {
@@ -124,13 +142,7 @@ class DoctorSchedule extends Component {
         })
     }
 
-    componentDidUpdate(prevProps, prevState){
-        if(prevProps.language !== this.props.language){
-            this.setState({
-                allDays : this.getAllDays()
-            })
-        }
-    }
+    
 
     render() {
         let { allDays, allAvailabelTime } = this.state
@@ -163,7 +175,7 @@ class DoctorSchedule extends Component {
                     </div>
                     <div className="all-available-time">
                         <div className="text-calendar">
-                            <i class="fas fa-calendar-alt"></i>
+                            <i className="fas fa-calendar-alt"></i>
                             <span><FormattedMessage id="patient.detail-doctor.schedule"/></span>
                         </div>
                         <div className="time-content">
@@ -171,8 +183,8 @@ class DoctorSchedule extends Component {
                                 allAvailabelTime && allAvailabelTime.length > 0 ? 
                                 allAvailabelTime.map((item, index) => {
                                     let timeDisplay = this.props.language === 'vi' 
-                                            ? item.timeTypeData.valueVi 
-                                            : item.timeTypeData.valueEn
+                                                ? item.timeTypeData.valueVi 
+                                                : item.timeTypeData.valueEn
                                     return(
                                         <button 
                                             key={index}

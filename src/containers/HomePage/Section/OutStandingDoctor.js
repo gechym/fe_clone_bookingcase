@@ -65,7 +65,7 @@ class OutstandingDoctor extends Component {
                                            imageBase64 = new Buffer(item.image, 'base64').toString('binary'); // giải mã từ Buffer -> về ảnh ra view
                                         }
                                         return(
-                                            <div className="section-customize boder-customize" 
+                                            <div key={index} className="section-customize boder-customize" 
                                                 onClick={() =>this.handleViewDetailDoctor(item) }
                                             >
                                                 <div className="outer-bg">

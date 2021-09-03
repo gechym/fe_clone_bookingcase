@@ -82,11 +82,6 @@ class Doctor extends Component {
         if(rangeTime && rangeTime.length > 0){
             let selectedTime = rangeTime.filter((item) => item.isSelected === true)
             if(selectedTime && selectedTime.length > 0) {
-                // let object = {}
-                // object.doctorId = selectedDoctor.value
-                // object.date = formatedDate
-                // console.log(object)
-                // object.time = 
                 selectedTime.map((time) => {
                     let object = {}
                     object.doctorId = selectedDoctor.value

@@ -1,0 +1,40 @@
+.manage-clinic-container{
+    padding: 15px;
+    .ms-title{
+        font-size: 17px;
+        font-weight: 700;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .btn-add-new-clinic{
+        margin-top: 10px;
+    }
+
+    .preview-image{
+        border: 1px solid #ddd;
+        width: 400px;
+        height: 150px;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .label-upload{
+        padding: 5px;
+        background: #ddd;
+        border-radius: 6px;
+        cursor: pointer;
+    
+        &:hover{
+            opacity: 0.9;
+        }
+    }
+
+    .all-clinic{
+
+    }
+}

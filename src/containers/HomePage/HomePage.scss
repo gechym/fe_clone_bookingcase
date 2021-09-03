@@ -68,9 +68,9 @@
                     &.section-speciality{
                         background-image: url("../../assets/speciality/co-xuong-khop.jpg");
                     }
-                    &.section-medical-facility{
-                        background-image: url("../../assets/medical-facility/benh-vien-thu-cuc-1.jpg");
-                    }
+                    // &.section-medical-facility{
+                    //     background-image: url("../../assets/medical-facility/benh-vien-thu-cuc-1.jpg");
+                    // }
                     &.section-Outstandingdoctor{
                         background-image: url("../../assets/outstanding-doctor/anh-dai-dien-bs.jpg");
                         padding-top:0px !important;
@@ -186,7 +186,7 @@
 
 .slick-disabled{
     display: none !important;
-}
+} // giới hạn
 
 * {
 

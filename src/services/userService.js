@@ -62,6 +62,43 @@ const postPatientBookAppointment = (data) =>{
     return axios.post(`/api/patient-book-appointment`, data)
 }
 
+const postVerifyBookAppointment = (data) =>{
+    return axios.post(`/api/verify-booking-appointment`, data)
+}
+
+const postNewSpecialty = (data) =>{
+    return axios.post(`/api/create-new-specialty`, data)
+}
+
+const getAllSpecialty = () =>{
+    return axios.get(`/api/get-all-specialty`)
+}
+
+const getDetailSpecialtyById = (id,location) =>{
+    return axios.get(`/api/get-detail-specialty-by-id?id=${id}&location=${location}`)
+}
+
+const postNewClinic = (data) =>{
+    return axios.post(`/api/create-new-clinic`, data)
+}
+
+const getAllClinic = () =>{
+    return axios.get(`/api/get-all-clinic`)
+}
+
+const getDetailClinicById = (id) =>{
+    return axios.get(`/api/get-detail-clinic-by-id?id=${id}`)
+}
+
+const getListPatientForDoctor = (id,date) => {
+    return axios.get(`/api/get-list-Patinet-for-doctor?doctorId=${id}&date=${date}`)
+}
+
+const postSendRemedy = (data) => {
+    return axios.post(`/api/send-remedy`, data)
+}
+
+
      
 export default {
     handleLoginApi,
@@ -78,5 +115,14 @@ export default {
     getScheduleDoctorByDate,
     getExtraInforDoctorById,
     getProfileDoctorById,
-    postPatientBookAppointment
+    postPatientBookAppointment,
+    postVerifyBookAppointment,
+    postNewSpecialty,
+    getAllSpecialty,
+    getDetailSpecialtyById,
+    postNewClinic,
+    getAllClinic,
+    getDetailClinicById,
+    getListPatientForDoctor,
+    postSendRemedy
 }

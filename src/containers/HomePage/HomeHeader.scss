@@ -2,14 +2,13 @@
     height: 70px;
     padding: 0px 60px;
     position: relative;
-    // test
-    // position: fixed;
-    // background-color: white;
-    // top : 0;
-    // right: 0;
-    // left: 0;
-    // z-index: 10000000000000;
-    // box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
+    position: fixed;
+    background-color: white;
+    top : 0;
+    right: 0;
+    left: 0;
+    z-index: 10;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
 
     .home-header-content{
         height: 100%;
@@ -40,7 +39,6 @@
             display: flex;
             align-items: center;
             justify-content: space-evenly;
-
             .child-content{
                 cursor: pointer;
                 div{
@@ -123,7 +121,7 @@
 .home-header-banner{
     
     height: 485px;
-    // margin-top: 30px;
+    margin-top: 70px;
     // background-image: linear-gradient(rgba(0, 0, 0, 0.25),rgba(255, 255, 255, 0.1));
     background:url(../../assets/images/header-background.jpg);
     background-repeat: no-repeat;

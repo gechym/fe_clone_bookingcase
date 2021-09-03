@@ -44,14 +44,14 @@ export const adminMenu = [
     { //Quản lý 
         name: 'menu.admin.specialties', menus: [
             {
-                name:'menu.admin.manage-specialitis' , link:'/system/manage-clinic'
+                name:'menu.admin.manage-specialitis' , link:'/system/manage-specialitis'
             }
         ]
     },
     { //Quản lý 
         name: 'menu.admin.handbook', menus: [
             {
-                name:'menu.admin.manage-handbook' , link:'/system/manage-clinic'
+                name:'menu.admin.manage-handbook' , link:'/system/manage-handbook'
             }
         ]
     },
@@ -63,6 +63,9 @@ export const doctorMenu = [
         menus: [
             {
                 name: 'menu.doctor.schedule',link:'/doctor/manage-schedule'
+            },
+            {
+                name: 'menu.doctor.manage-patient',link:'/doctor/manage-patient'
             }
         ]
     },

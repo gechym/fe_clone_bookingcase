@@ -20,7 +20,7 @@ class BookingModal extends Component {
         this.state = {
             genderArr : [],
 
-            fullname : '',
+            fullName : '',
             phoneNumber :'',
             email: '',
             address: '',
@@ -29,9 +29,24 @@ class BookingModal extends Component {
             gender : '',
             doctorId: '',
             timeType: '',
-            date: ''
+            date: '',
+            timeText: '',
+            doctorName : ''
         }
     }
+
+    buildDoctorName = (dataTime) => {
+        let {language} = this.props
+        if(dataTime && !_.isEmpty(dataTime)){
+            let name = language === 'vi' ? 
+                `${dataTime.doctorData.lastName} ${dataTime.doctorData.firstName} ` :
+                `${dataTime.doctorData.firstName} ${dataTime.doctorData.lastName}`
+            return name    
+        }
+
+        return ''
+    }
+
     async componentDidMount(){
         this.props.getGenderStart()
 
@@ -41,7 +56,7 @@ class BookingModal extends Component {
         this.setState({
             doctorId : doctorId,
             timeType : timeType,
-            date : date
+            date : date,
         })
         
     }
@@ -63,7 +78,10 @@ class BookingModal extends Component {
                 this.setState({
                     doctorId : doctorId,
                     timeType : timeType,
-                    date : date
+                    date : date,
+                    timeText :  this.props.language === 'vi' ?
+                                this.props.dataTime.timeTypeData.valueVi :
+                                this.props.dataTime.timeTypeData.valueEn
                 })
             }
         }
@@ -106,35 +124,33 @@ class BookingModal extends Component {
 
     handleConfirmBooking = async () => {
         let check = this.checkValidateInput()
+        let doctorName = this.buildDoctorName(this.props.dataTime)
+
         if(check){
             let data = {
-                fullname : this.state.fullname,
+                fullName : this.state.fullname,//
                 phoneNumber : this.state.phoneNumber,
-                email: this.state.email,
+                email: this.state.email,//
                 address: this.state.address,
                 reason: this.state.reason,
                 birthday : this.state.birthday,
                 gender : this.state.gender,
-                doctorId: this.state.doctorId,
+                doctorId: this.state.doctorId,//
                 timeType : this.state.timeType,
-                date : this.state.date
+                date : this.state.date,
+                doctorName : doctorName,//
+                timeText : this.state.timeText,//
+                language : this.props.language//
             }
             let res = await userService.postPatientBookAppointment(data)
     
             if(res && res.errCode === 0){
                 toast.success("Tạo lịch hẹn thành công, vui lòng check email !!")
-                this.setState({
-                    fullname : '',
-                    phoneNumber :'',
-                    email: '',
-                    address: '',
-                    reason: '',
-                    birthday : '',
-                    gender : '',
-                    doctorId: '',
-                    timeType: '',
-                    date: ''
-                })
+                
+                this.props.toggerFromParent();
+
+            } else if(res.errCode === -2){
+                toast.info("Hệ thống ghi nhận lịch hẹn này đã tồn tại, mời bạn chọn khung giờ")
                 this.props.toggerFromParent();
 
             }else{
@@ -151,6 +167,7 @@ class BookingModal extends Component {
         }
 
         let { genderArr, gender } = this.state
+
 
 
         return (

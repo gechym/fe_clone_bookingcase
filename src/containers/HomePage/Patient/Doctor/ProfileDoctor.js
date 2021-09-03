@@ -7,6 +7,8 @@ import NumberFormat from 'react-number-format';
 import _ from 'lodash';
 import moment, { months } from 'moment';
 import localization from 'moment/locale/vi';
+import { withRouter } from 'react-router';
+
 
 
 
@@ -49,10 +51,13 @@ class ProfileDoctor extends Component {
         return string.charAt(0).toUpperCase() + string.slice(1);
     }
 
+    handleViewDetailSpecialty = (id) => {
+        this.props.history.push(`/detail-doctor/${id}`)
+    }
+
    
 
     renderTimeBoking = (dataTime)=> {
-        console.log("render time booking",dataTime)
         if(dataTime && !_.isEmpty(dataTime)){
             let {language} = this.props
             let date = language === 'vi'
@@ -85,16 +90,47 @@ class ProfileDoctor extends Component {
             nameVi = `${dataProfile.positionData.valueVi}, ${dataProfile.lastName} ${dataProfile.firstName} `
             nameEn = `${dataProfile.positionData.valueEn}, ${dataProfile.firstName} ${dataProfile.lastName}`
         }
+
+        console.log('check state profile doctor',dataProfile)
+
         return (
             <div className="doctor-profile-container">
                    <div className="intro-doctor">
                         <div 
                             className="content-left" 
-                            style={{backgroundImage:`url(${dataProfile && dataProfile.image && dataProfile.image})`}}
-                        >
+                            style={{
+                                backgroundImage:`url(${dataProfile && dataProfile.image && dataProfile.image})`,
+                                position:'relative'
+                            }}
+                            >
+                                {
+                                showDescriptionDoctorId ? 
+                                    <div 
+                                        className="show-more" 
+                                        style={{
+                                            position: 'absolute',
+                                            top: '109%',
+                                            width: '100px',
+                                            right: '-7px',
+                                            color : '#49BCE2',
+                                            cursor : 'pointer',
+                                            'fontWeight':'700'
+                                        }}
+                                        onClick={e => this.handleViewDetailSpecialty(dataProfile.id)}
+                                    >
+                                        <span>Xem Thêm</span>
+                                    </div>:''
+                                }
 
+                                {/* <iframe 
+                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d59587.945831162724!2d105.8019440077557!3d21.022816135625764!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ab9bd9861ca1%3A0xe7887f7b72ca17a9!2zSGFub2ksIEhvw6BuIEtp4bq_bSwgSGFub2ksIFZpZXRuYW0!5e0!3m2!1sen!2s!4v1629815154900!5m2!1sen!2s"
+                                    width="600" height="250" 
+                                    style={{border:'0',position: 'absolute',top: '109%',borderRadius:'10px'}} 
+                                    allowfullscreen="" 
+                                    loading="eager"
+                                >
+                                </iframe> */}
                         </div>
-
                         <div className="content-right">
                             <div className="up">
                                 {
@@ -107,14 +143,17 @@ class ProfileDoctor extends Component {
                                     dataProfile && 
                                     dataProfile.Markdown &&
                                     dataProfile.Markdown.description  
-                                    ? 
-                                    <span>
-                                        {dataProfile.Markdown.description}
-                                    </span> 
+                                    ?
+                                    <div>
+                                        <span>
+                                            {dataProfile.Markdown.description}
+                                        </span> 
+                                    </div>
                                     :
                                     this.renderTimeBoking(this.props.dataTime)
                                 }
                                 {   
+                                    !showDescriptionDoctorId&&
                                     dataProfile &&
                                     dataProfile.Doctor_infor &&
                                     dataProfile.Doctor_infor.nameClinic &&
@@ -125,31 +164,52 @@ class ProfileDoctor extends Component {
                                     </span>
                                 }
                             </div>
-                            <div className="price">
-                            <FormattedMessage id="patient.extra-infor-doctor.price" /> : 
-                                {
-                                    this.props.language === 'vi' ? 
-                                        <b>
-                                            <NumberFormat
-                                                value={dataProfile && dataProfile.Doctor_infor ? dataProfile.Doctor_infor.priceTypeData.valueVi  : '0'}
-                                                thousandSeparator="."
-                                                decimalSeparator=","
-                                                displayType="text"
-                                                suffix=" VNĐ"
-                                            />
-                                        </b>
-                                        : 
-                                        <b>
-                                            <NumberFormat
-                                                value={dataProfile && dataProfile.Doctor_infor ? dataProfile.Doctor_infor.priceTypeData.valueEn  : '0'}
-                                                thousandSeparator="."
-                                                decimalSeparator=","
-                                                displayType="text"
-                                                suffix=" $"
-                                            />
-                                        </b>
-                                }
-                            </div>
+                            {
+                                !showDescriptionDoctorId ? 
+                                <div className="price">
+                                    <FormattedMessage id="patient.extra-infor-doctor.price" /> : 
+                                        {
+                                            this.props.language === 'vi' ? 
+                                                <b>
+                                                    <NumberFormat
+                                                        value={dataProfile && dataProfile.Doctor_infor ? dataProfile.Doctor_infor.priceTypeData.valueVi  : '0'}
+                                                        thousandSeparator="."
+                                                        decimalSeparator=","
+                                                        displayType="text"
+                                                        suffix=" VNĐ"
+                                                    />
+                                                </b>
+                                                : 
+                                                <b>
+                                                    <NumberFormat
+                                                        value={dataProfile && dataProfile.Doctor_infor ? dataProfile.Doctor_infor.priceTypeData.valueEn  : '0'}
+                                                        thousandSeparator="."
+                                                        decimalSeparator=","
+                                                        displayType="text"
+                                                        suffix=" $"
+                                                    />
+                                                </b>
+                                        }
+                                </div> 
+                                    : 
+                                <div>
+                                    <span> <i class="fas fa-map-marker-alt" style={{color:'#ED4436'}}></i>  &nbsp;
+                                        {
+                                                    dataProfile && dataProfile.Doctor_infor 
+                                                    && dataProfile.Doctor_infor.provinceTypeData ? 
+                                                    <>
+                                                        {
+                                                            this.props.language === 'vi' ?
+                                                            dataProfile.Doctor_infor.provinceTypeData.valueVi :
+                                                            dataProfile.Doctor_infor.provinceTypeData.valueEn
+                                                        }
+                                                    </> :
+                                                    ''
+                                        }
+                                    </span>
+                                </div>
+                                
+                            }
                         </div>
                    </div>
             </div>
@@ -170,4 +230,4 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ProfileDoctor);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ProfileDoctor));

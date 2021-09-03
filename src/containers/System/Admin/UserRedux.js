@@ -342,7 +342,7 @@ class UserRedux extends Component {
                                     <textarea 
                                         onChange={(e) => {this.onChangeInput(e,'address')}}
                                         value={address} 
-                                        class="form-control" 
+                                        className="form-control" 
                                         rows="4"
                                     ></textarea>
                                 </div>

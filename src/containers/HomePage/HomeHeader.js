@@ -59,11 +59,11 @@ class HomeHeader extends Component {
                                 this.props.language === 'vi' 
                                         ? 
                                     <div className="language-vn active">
-                                        <spam onClick={() => this.changeLanguage(LANGUAGES.VI)} >VN</spam>
+                                        <span onClick={() => this.changeLanguage(LANGUAGES.VI)} >VN</span>
                                     </div> 
                                         : 
                                     <div className="language-vn">
-                                        <spam onClick={() => this.changeLanguage(LANGUAGES.VI)} >VN</spam>
+                                        <span onClick={() => this.changeLanguage(LANGUAGES.VI)} >VN</span>
                                     </div>
                             }
                             {
@@ -123,7 +123,7 @@ class HomeHeader extends Component {
                                     <div className="text-child"><FormattedMessage id="banner.pure-health"/></div>
                                 </div>
                                 <div className="option-child">
-                                    <div className="icon-child"><i class="fas fa-address-book"></i></div>
+                                    <div className="icon-child"><i className="fas fa-address-book"></i></div>
                                     <div className="text-child"><FormattedMessage id="banner.dental-examination"/></div>
                                 </div>
 

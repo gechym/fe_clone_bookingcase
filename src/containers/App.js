@@ -19,11 +19,11 @@ import System from '../routes/System';
 import Doctor from '../routes/Doctor';
 import DetailDoctor from '../containers/HomePage/Patient/Doctor/DetailDoctor'
 import HomePage from './HomePage/HomePage'
+import VerifyEmail from './HomePage/Patient/VerifyEmail';
+import DetailSpecialty from './HomePage/Patient/specialty/detailSpecialty';
+import detailClinic from './HomePage/Patient/Clinic/detailClinic';
 
-// impot componet Home page
 
-
-import { CustomToastCloseButton } from '../components/CustomToast';
 
 class App extends Component {
 
@@ -60,18 +60,26 @@ class App extends Component {
                                                     <Route path={path.SYSTEM}  component={userIsAuthenticated(System)} />// "/system/.."
                                                     <Route path={'/doctor'}  component={userIsAuthenticated(Doctor)} />// "/system/.."
                                                     <Route path={path.HOMEPAGE} component={HomePage}/> // "/home"
-                                                    <Route path={path.DETAIL_DOCTOR} component={DetailDoctor}/> 
-                                                    <Route path="/:balala" component={() => { return (<Redirect to='home' />) }} />
+                                                    <Route path={path.DETAIL_DOCTOR} component={DetailDoctor}/>
+                                                    <Route path={path.DETAIL_SPECIALTY} component={DetailSpecialty}/>
+                                                    <Route path={path.DETAIL_SPECIALTY} component={DetailSpecialty}/>
+                                                    <Route path={path.DETAIL_CLINIC} component={detailClinic}/>
+                                                    <Route path={path.VERIFY_EMAIL_BOOKING} component={VerifyEmail}/> 
+                                                    <Route path="/:balala" component={() => { return (<Redirect to='/home' />) }} />
                                                 </Switch>
                                         </div>
                                     </CustomScrollbars>
 
-                            {/* <ToastContainer
-                                className="toast-container" toastClassName="toast-item" bodyClassName="toast-item-body"
-                                autoClose={false} hideProgressBar={true} pauseOnHover={false}
-                                pauseOnFocusLoss={true} closeOnClick={false} draggable={false}
-                                closeButton={<CustomToastCloseButton />}
-                            /> */}
+                            {
+                            /* 
+                                <ToastContainer
+                                    className="toast-container" toastClassName="toast-item" bodyClassName="toast-item-body"
+                                    autoClose={false} hideProgressBar={true} pauseOnHover={false}
+                                    pauseOnFocusLoss={true} closeOnClick={false} draggable={false}
+                                    closeButton={<CustomToastCloseButton />}
+                                /> 
+                            */
+                            }
 
                                 <ToastContainer
                                 position="bottom-right"
