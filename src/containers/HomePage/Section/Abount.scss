@@ -1,0 +1,29 @@
+.section-abount{
+    height: 500px !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    .section-abount-header{
+        padding: 20px 100px;
+        margin: 0px;        
+    }
+
+    .section-abount-content{
+        margin: 0px 100px;
+        height: 91%;
+        display: flex;
+        .content-left{
+            text-align: justify;
+            width: 50%;
+            height: 100%;
+            padding: 40px;
+            p{
+                font-size: 16px;
+            }
+        }
+        .content-right{
+            width: 50%;
+            height: 100%;
+        }
+    }
+}

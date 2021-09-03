@@ -1,0 +1,25 @@
+.message-container{
+    margin-top: 70px;
+    text-align: center;
+
+    .message-success {
+        text-align: center;
+    
+        h2{
+            color: #49BCE2;
+        }
+        b{
+            color: #FFC10E;
+        }
+    }
+    
+    .message-faild {
+        text-align: center;
+    
+        h2{
+            color: #FE363B;
+            font-weight: 900;
+        }
+    }
+}
+

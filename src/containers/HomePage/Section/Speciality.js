@@ -1,49 +1,78 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { FormattedMessage } from 'react-intl';
+import userService from '../../../services/userService';
+import { withRouter } from 'react-router';
 
-import Slider from "react-slick";
 import './Speciality.scss'
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 
 
+import Slider from "react-slick";
+                        
 
 class Speciality extends Component {
+    constructor(props){
+        super(props)
+        this.state = {
+            dataSpecialty : []
+        }
+    }
+
+    async componentDidMount(){
+        let res = await userService.getAllSpecialty()
+        console.log('check log :', res)
+        if(res && res.errCode === 0) {
+            this.setState({
+                dataSpecialty : res.data
+            })
+        }
+    }
+
+    handleViewDetailSpecialty = (user) => {
+        this.props.history.push(`/detail-specialty/${user.id}`)
+    }
+
+
     render() {
-        var settings = {
-            dots: false,
-            infinite: true,
-            speed: 500,
-            slidesToShow: 4,
-            slidesToScroll: 1,
-          };
+        let {dataSpecialty } = this.state
         return (
-            <div className="section-specialitry">
-                <div className="speciality-content">
-                    <Slider {...settings}>
-                        <div className="img-customize">
-                            <h1>1</h1>
+            <>
+                <div className="section-share section-speciality">
+                    <div className="section-container">
+                        
+                        <div className="section-header">
+                            <span className="title-section"><FormattedMessage id="homepage.specialty" /></span>
+                            <button className="button-section"><FormattedMessage id="homepage.more-info" /></button>
                         </div>
-                        <div className="img-customize">
-                            <h1>2</h1>
+
+                        <div className="section-body">
+                            <Slider {...this.props.settings}>
+                                {
+                                    dataSpecialty && dataSpecialty.length > 0 && 
+                                        dataSpecialty.map((item, index) => {
+                                            return (
+                                                <div className="section-customize" 
+                                                    key={index}
+                                                    onClick={() =>this.handleViewDetailSpecialty(item)}
+                                                >
+                                                    <div 
+                                                        className="bg-img section-speciality"
+                                                        style={{backgroundImage:`url(${item.image && item.image})`}}
+                                                    ></div>
+                                                    <div>{item.name}</div>
+                                                </div>
+                                            )
+                                        })
+                                }
+                            </Slider>
                         </div>
-                        <div className="img-customize">
-                            <h1>3</h1>
-                        </div>
-                        <div className="img-customize">
-                            <h1>4</h1>
-                        </div>
-                        <div className="img-customize">
-                            <h1>5</h1>
-                        </div>
-                        <div className="img-customize">
-                            <h1>6</h1>
-                        </div>
-                    </Slider>
+                    </div>
                 </div>
-            </div>
+            </>
+            
         )
     }
 
@@ -61,4 +90,4 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Speciality);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Speciality));

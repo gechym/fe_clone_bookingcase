@@ -1,0 +1,31 @@
+.manage-patient-container{
+    .mp-title{
+        font-size: 15px;
+        padding-top: 10px;
+        text-transform: uppercase;
+        font-weight: 600;
+        text-align: center;
+    }
+    .manage-patient-body{
+        padding: 0px 120px;
+    }
+}
+._loading_overlay_wrapper {
+    height: 100vh;
+    z-index: 1000!important;
+    position: inherit;
+}
+
+._loading_overlay_overlay{
+    z-index: 100000000000000000000000000000000000!important;
+}
+
+
+
+.Toastify__toast-container{
+    z-index: 2 !important;
+}
+
+.modal {
+    z-index: 10000 !important;
+}

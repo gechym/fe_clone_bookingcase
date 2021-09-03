@@ -86,11 +86,10 @@ class ModalUser extends Component {
         return check
     }
 
-    hanhdleNewUser = () => {
+    hanhdleNewUser = async () => {
         let check =  this.checkValidateInput()
         if(check){
-            this.props.createNewUser(this.state)// truyền data về cho thằng cha để nó xử lý rồi render ra view
-            emitter.emit("EVENT_CLEAR_MODAL_DATA1")
+            await this.props.createNewUser(this.state)// truyền data về cho thằng cha để nó xử lý rồi render ra view
         }
     }
 
@@ -159,8 +158,8 @@ class ModalUser extends Component {
                             
                         </ModalBody>
                         <ModalFooter>
-                        <Button color="primary" className="px-3" onClick={() =>this.hanhdleNewUser() }>save</Button>{' '}
-                        <Button color="secondary" className="px-3" onClick={() => this.toggle()}>close</Button>
+                            <Button color="primary" className="px-3" onClick={() =>this.hanhdleNewUser() }>save</Button>{' '}
+                            <Button color="secondary" className="px-3" onClick={() => this.toggle()}>close</Button>
                         </ModalFooter>
                 </Modal>
             </div>

@@ -17,7 +17,3 @@ export const changeLanguageApp = (language) => ({
 })
 
 
-export const test = () => ({
-    type : actionTypes.TEST_REDUX,
-    test : "HELLO REDUX "
-})

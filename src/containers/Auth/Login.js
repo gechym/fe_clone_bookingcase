@@ -5,28 +5,40 @@ import * as actions from "../../store/actions"; // '../store/actions'
 import './Login.scss';
 import  userService  from '../../services/userService';
 
+import { Spinner } from 'reactstrap';
+
 
 class Login extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            username : 'admin',
-            password : '123',
+            username:'',
+            password:'',
             isShowPassword : false,
-            errMessage : ''
+            errMessage : '',
+            isLoading : false
+        }
+    }
+
+    handleKeyDown = (e) => {
+        console.log(e.keyCode)
+        if(e.key === 'Enter'){
+            this.handleLogin(this.state.username, this.state.password)
         }
     }
 
     handleLogin = async (email,password) => {
-        this.setState({errMessage : ''})
+        this.setState({errMessage : '',isLoading:true})
         try {
             let data = await userService.handleLoginApi(email,password);
             console.log(data)
             var {errCode, errMessage, user} = data
             if(errCode !== 0 && data){
+                this.setState({isLoading:false})
                 this.setState({errMessage})
             }
             if(errCode === 0 && data){
+                this.setState({isLoading:false})
                 this.props.userLoginSuccess(user)
                 console.log(user)
             }
@@ -40,6 +52,7 @@ class Login extends Component {
         } catch (err) {
             if(err.response){
                 if(err.response.data){
+                    this.setState({isLoading:false})
                     this.setState({errMessage:err.response.data.message})
                 }
             }
@@ -65,7 +78,6 @@ class Login extends Component {
                                 className="input form-control" 
                                 value={this.state.username}
                                 onChange={e => this.setState({username:e.target.value,errMessage:''})}
-                                name="email"
                             />
                         </div>
                         <div className="col-12 form-group form-input-password">
@@ -77,7 +89,9 @@ class Login extends Component {
                                     className="input form-control"
                                     value={this.state.password}
                                     onChange={e => this.setState({password:e.target.value,errMessage:''})}
-                                    name="password"
+                                    onKeyDown = {(e) => {
+                                        this.handleKeyDown(e)
+                                    }}
                                 />
                               
                                 {
@@ -89,7 +103,20 @@ class Login extends Component {
                              </div>
                         </div>
                         <div className="col-12" style={{height:"40px",textAlign:"center",color:"red"}}>
-                            {this.state.errMessage}
+                            
+                            {
+                                this.state.errMessage 
+                                    ? 
+                                    this.state.errMessage 
+                                    :
+                                        this.state.isLoading 
+                                            ? 
+                                            <Spinner type="grow" color="info" />
+                                            :
+                                            ''
+                                      
+                            }
+                            
                         </div>
                         <div className="col-12">
                             <input 

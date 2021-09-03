@@ -30,11 +30,16 @@
             position: absolute;
             padding: 0;
             .menu {
-                width: 205px;
+                width: 100%;
                 padding: 0 15px;
                 height: 35px;
                 line-height: 35px;
                 text-transform: none;
+
+                &.active{
+                    color: #0071BA;
+                }
+
                 .menu-link {
                     text-decoration: none;
                     color: $text-in-light;
@@ -64,14 +69,14 @@
                             display: block;
                         }
                         &.active a {
-                            font-weight: 500;
-                            color: $colormain;
+                            font-weight: 500 !important;
+                            color: #0071BA !important;
                         }
                     }
                 }
                 &.active span {
-                    font-weight: 500;
-                    color: $colormain;
+                    font-weight: 500 !important;
+                    color: #0071BA !important;
                 }
                 &:hover {
                     background-color: darken($bg-menu-color, 3);
