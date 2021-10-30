@@ -10,6 +10,7 @@ import userService from '../../../../services/userService';
 import _ from 'lodash';
 import * as actions from '../../../../store/actions'
 import { toast } from "react-toastify";
+import { Spinner } from 'reactstrap';
 
 
 
@@ -31,7 +32,9 @@ class BookingModal extends Component {
             timeType: '',
             date: '',
             timeText: '',
-            doctorName : ''
+            doctorName : '',
+            isLoanding : false,
+            errMessage : ''
         }
     }
 
@@ -114,7 +117,9 @@ class BookingModal extends Component {
         for (let i=0;i<arrInput.length;i++){
             if(!this.state[arrInput[i]]){
                 isValidate = false
-                toast.info(`Không được để trống ${arrInput[i]}`)
+                this.setState({
+                    errMessage:`Không được để trống ${arrInput[i]}`
+                })
                 break
             }
         }
@@ -142,18 +147,29 @@ class BookingModal extends Component {
                 timeText : this.state.timeText,//
                 language : this.props.language//
             }
+            this.setState({
+                isLoanding : true
+            }) 
             let res = await userService.postPatientBookAppointment(data)
-    
             if(res && res.errCode === 0){
-                toast.success("Tạo lịch hẹn thành công, vui lòng check email !!")
-                
+                this.setState({
+                    isLoanding : false
+                })            
                 this.props.toggerFromParent();
+                toast.success("Hệ thống ghi nhận lịch hẹn vui lòng kiểm tra email")
 
             } else if(res.errCode === -2){
                 toast.info("Hệ thống ghi nhận lịch hẹn này đã tồn tại, mời bạn chọn khung giờ")
+                this.setState({
+                    isLoanding : false
+                })  
                 this.props.toggerFromParent();
 
             }else{
+                this.setState({
+                    isLoanding : false
+                })  
+                this.props.toggerFromParent();
                 toast.error("Tạo lịch hẹn thất bại, vui lòng kiểm tra lại hoặc inbox nhân viên hổ trợ !!")
             }
         }
@@ -166,7 +182,7 @@ class BookingModal extends Component {
             doctorId = dataTime.doctorId
         }
 
-        let { genderArr, gender } = this.state
+        let { genderArr, gender, isLoanding, errMessage } = this.state
 
 
 
@@ -250,7 +266,8 @@ class BookingModal extends Component {
                                         value = {this.state.birthday}
                                         className="form-control"
                                     />
-                                </div><div className="col-6 form-group">
+                                </div>
+                                <div className="col-6 form-group">
                                     <label><FormattedMessage id="patient.booking-modal.gender"/></label>
                                     <select 
                                         className="form-control"
@@ -264,10 +281,15 @@ class BookingModal extends Component {
                                                                                
                                     </select>
                                 </div>
+                                <div className="col-12 form-group">
+                                    <label>{errMessage ? errMessage : '' }</label>
+                                </div>
                             </div>
                         </div>
                         <div className="booking-modal-footer">
-                            <button className="btn btn-booking-confirm" onClick={()=>this.handleConfirmBooking()}><FormattedMessage id="patient.booking-modal.confirm"/></button>
+                            <button className="btn btn-booking-confirm" onClick={()=>this.handleConfirmBooking()}>
+                                {isLoanding && isLoanding ?<Spinner animation="border" variant="primary" /> : <FormattedMessage id="patient.booking-modal.confirm"/>}
+                            </button>
                             <button className="btn btn-booking-cancel" onClick={this.toggle}><FormattedMessage id="patient.booking-modal.cancel"/></button>
                         </div>
                     </div>

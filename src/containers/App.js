@@ -22,6 +22,7 @@ import HomePage from './HomePage/HomePage'
 import VerifyEmail from './HomePage/Patient/VerifyEmail';
 import DetailSpecialty from './HomePage/Patient/specialty/detailSpecialty';
 import detailClinic from './HomePage/Patient/Clinic/detailClinic';
+import TestVideo from './HomePage/Patient/test/TestVideo'
 
 
 
@@ -64,7 +65,9 @@ class App extends Component {
                                                     <Route path={path.DETAIL_SPECIALTY} component={DetailSpecialty}/>
                                                     <Route path={path.DETAIL_SPECIALTY} component={DetailSpecialty}/>
                                                     <Route path={path.DETAIL_CLINIC} component={detailClinic}/>
-                                                    <Route path={path.VERIFY_EMAIL_BOOKING} component={VerifyEmail}/> 
+                                                    <Route path={path.VERIFY_EMAIL_BOOKING} component={VerifyEmail}/>
+                                                    <Route path={'/test-video'} component={TestVideo}/>
+
                                                     <Route path="/:balala" component={() => { return (<Redirect to='/home' />) }} />
                                                 </Switch>
                                         </div>
